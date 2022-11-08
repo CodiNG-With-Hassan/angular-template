@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AppRoutes } from '@Consts/routes.consts';
+import { AppRoutes } from '@Enums/routes.enum';
 
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './shared/pages/not-found/not-found.component';
@@ -23,6 +23,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }
