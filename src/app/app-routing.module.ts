@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AppRoutes } from '@Consts/routes.consts';
+
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './shared/pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: AppRoutes.Empty,
     component: AppComponent,
   },
   {
-    path: '**',
-    redirectTo: '404',
+    path: AppRoutes.Other,
+    redirectTo: AppRoutes.NotFound,
   },
   {
-    path: '404',
+    path: AppRoutes.NotFound,
     component: NotFoundComponent,
   },
 ];
