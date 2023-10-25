@@ -5,18 +5,14 @@ import { environment } from '@Environment';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-    selector: 'ngt-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    standalone: true,
-    imports: [RouterOutlet],
+  selector: 'ngt-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [RouterOutlet],
 })
 export class AppComponent implements OnInit {
-
-  constructor(
-    private readonly translateService: TranslateService,
-  ) {
-  }
+  constructor(private readonly translateService: TranslateService) {}
 
   ngOnInit(): void {
     this.translateService.setDefaultLang(environment.defaultLanguage);
