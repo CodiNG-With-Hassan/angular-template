@@ -1,12 +1,10 @@
 import { ActionReducer } from '@ngrx/store';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface LazyModules {
-}
+export interface LazyModules {}
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Shared {
-}
+export interface Shared {}
 
 export interface State extends LazyModules {
   shared: Shared;
