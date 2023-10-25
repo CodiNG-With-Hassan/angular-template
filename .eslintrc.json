@@ -1,7 +1,7 @@
 {
   "root": true,
   "ignorePatterns": [
-    "projects/**/*"
+     "projects/**/*.{js,css,json}"
   ],
   "overrides": [
     {
@@ -16,21 +16,31 @@
       },
       "plugins": [
         "@typescript-eslint",
-        "eslint-plugin-import",
         "import",
         "prefer-arrow",
         "no-null",
         "rxjs"
       ],
       "extends": [
-        "plugin:@angular-eslint/ng-cli-compat",
-        "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
-        "plugin:rxjs/recommended"
+        "plugin:rxjs/recommended",
+        "plugin:prettier/recommended"
       ],
       "settings": {
+        "import/parsers": {
+          "@typescript-eslint/parser": [".ts"]
+        },
+        "import/resolver": {
+          "typescript": {
+            "alwaysTryTypes": false
+          }
+        },
         "import/external-module-folders": [
-          "../node_modules"
+          "../node_modules",
+          "node_modules"
         ]
       },
       "rules": {
@@ -44,7 +54,7 @@
               "element",
               "attribute"
             ],
-            "prefix": "ngt",
+            "prefix": "chr",
             "style": "kebab-case"
           }
         ],
@@ -52,15 +62,12 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "ngt",
+            "prefix": "chr",
             "style": "camelCase"
           }
         ],
-        "@typescript-eslint/no-shadow": [
-          "off"
-        ],
-        "@typescript-eslint/quotes": [
-          "off"
+        "@angular-eslint/no-empty-lifecycle-method": [
+          "warn"
         ],
         "newline-before-return": [
           "off"
@@ -76,7 +83,7 @@
           "off"
         ],
         "no-underscore-dangle": [
-          "warn"
+          "off"
         ],
         "no-multiple-empty-lines": [
           "error",
@@ -87,9 +94,38 @@
           }
         ],
         "class-methods-use-this": [
+          "off"
+        ],
+        "no-prototype-builtins": [
           "warn"
         ],
+        "no-case-declarations": [
+          "warn"
+        ],
+        "no-useless-escape": [
+          "warn"
+        ],
+        "no-constant-condition": [
+          "warn"
+        ],
+        "no-useless-catch": [
+          "warn"
+        ],
+        "no-global-assign": [
+          "warn"
+        ],
+        "no-async-promise-executor": [
+          "warn"
+        ],
+
         "rxjs/no-implicit-any-catch": [
+          "off"
+        ],
+
+        "@typescript-eslint/no-shadow": [
+          "off"
+        ],
+        "@typescript-eslint/quotes": [
           "off"
         ],
         "@typescript-eslint/explicit-function-return-type": [
@@ -124,17 +160,7 @@
           }
         ],
         "@typescript-eslint/typedef": [
-          "error",
-          {
-            "arrayDestructuring": true,
-            "arrowParameter": true,
-            "memberVariableDeclaration": true,
-            "objectDestructuring": true,
-            "parameter": true,
-            "propertyDeclaration": true,
-            "variableDeclaration": true,
-            "variableDeclarationIgnoreFunction": false
-          }
+          "off"
         ],
         "@typescript-eslint/type-annotation-spacing": [
           "error"
@@ -156,7 +182,60 @@
         ],
         "@typescript-eslint/member-ordering": [
           "warn"
-        ]
+        ],
+        "@typescript-eslint/ban-ts-comment": [
+          "warn"
+        ],
+        "@typescript-eslint/no-empty-function": [
+          "warn"
+        ],
+        "@typescript-eslint/prefer-as-const": [
+          "warn"
+        ],
+        "@typescript-eslint/no-this-alias": [
+          "warn"
+        ],
+        "@typescript-eslint/no-unused-vars": [
+          "warn",
+          {
+            "argsIgnorePattern": "^_",
+            "destructuredArrayIgnorePattern": "^_"
+          }
+        ],
+        "import/order": [
+          "warn",
+          {
+            "groups": [
+              "builtin",
+              "external",
+              "internal",
+              "parent",
+              "sibling",
+              "index"
+            ],
+            "pathGroups": [
+              {
+                "pattern": "@angular/**",
+                "group": "external",
+                "position": "before"
+              },
+              {
+                "pattern": "src/**/*",
+                "position": "after",
+                "group": "internal"
+              }
+            ],
+            "alphabetize": {
+              "order": "asc",
+              "caseInsensitive": false
+            },
+            "newlines-between": "always",
+            "distinctGroup": true
+          }
+        ],
+        "import/first": "error",
+        "import/no-duplicates": "error",
+        "import/no-useless-path-segments": "warn"
       }
     },
     {
@@ -167,6 +246,33 @@
         "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {}
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "excludedFiles": [
+        "*inline-template-*.component.html"
+      ],
+      "extends": [
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "prettier/prettier": [
+          "error",
+          {
+            "parser": "angular"
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.spec.ts"
+      ],
+      "rules": {
+        "@typescript-eslint/dot-notation": "off"
+      }
     }
   ]
 }
