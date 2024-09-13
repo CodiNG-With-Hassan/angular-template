@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from '@Environment';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'ngt-root',
