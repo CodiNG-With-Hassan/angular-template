@@ -1,12 +1,12 @@
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { enableProdMode, importProvidersFrom } from '@angular/core';
-import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
+import { bootstrapApplication, BrowserModule } from '@angular/platform-browser';
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
-import { REDUCER_PROVIDER, getInitialState, reducerToken } from '@AppStore';
+import { getInitialState, REDUCER_PROVIDER, reducerToken } from '@AppStore';
 import { environment } from '@Environment';
 
 import { AppRoutingModule } from './app/app-routing.module';
@@ -35,6 +35,7 @@ bootstrapApplication(AppComponent, {
     provideStoreDevtools({
       maxAge: 25,
       logOnly: environment.production,
+      connectInZone: true,
     }),
     REDUCER_PROVIDER,
     provideHttpClient(withInterceptorsFromDi()),
