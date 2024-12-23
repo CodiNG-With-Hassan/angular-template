@@ -8,7 +8,6 @@ import { environment } from '@Environment';
   selector: 'ngt-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  standalone: true,
   imports: [RouterOutlet],
 })
 export class AppComponent implements OnInit {
