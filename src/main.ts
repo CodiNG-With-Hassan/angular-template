@@ -12,6 +12,9 @@ import { environment } from '@Environment';
 import { AppRoutingModule } from './app/app-routing.module';
 import { AppComponent } from './app/app.component';
 import { MultiTranslateLoader } from './app/shared/loaders/multi-translate.loader';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
 
 if (environment.production) {
   enableProdMode();
@@ -38,6 +41,13 @@ bootstrapApplication(AppComponent, {
       connectInZone: true,
     }),
     REDUCER_PROVIDER,
+    provideAnimationsAsync(),
+    providePrimeNG({
+      ripple: true,
+      theme: {
+        preset: Aura,
+      },
+    }),
     provideHttpClient(withInterceptorsFromDi()),
   ],
 }).catch((err: unknown) => console.error(err));
