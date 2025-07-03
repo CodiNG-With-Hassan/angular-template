@@ -14,7 +14,7 @@ import { AppComponent } from './app/app.component';
 import { MultiTranslateLoader } from './app/shared/loaders/multi-translate.loader';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeng/themes/aura';
+import { primengPreset } from 'app/primeng.preset';
 
 if (environment.production) {
   enableProdMode();
@@ -26,28 +26,15 @@ bootstrapApplication(AppComponent, {
       BrowserModule,
       AppRoutingModule,
       TranslateModule.forRoot({
-        loader: {
-          provide: TranslateLoader,
-          useClass: MultiTranslateLoader,
-          deps: [HttpClient],
-        },
+        loader: { provide: TranslateLoader, useClass: MultiTranslateLoader, deps: [HttpClient] },
       }),
     ),
     provideEffects([]),
     provideStore(reducerToken, { initialState: getInitialState }),
-    provideStoreDevtools({
-      maxAge: 25,
-      logOnly: environment.production,
-      connectInZone: true,
-    }),
+    provideStoreDevtools({ maxAge: 25, logOnly: environment.production, connectInZone: true }),
     REDUCER_PROVIDER,
     provideAnimationsAsync(),
-    providePrimeNG({
-      ripple: true,
-      theme: {
-        preset: Aura,
-      },
-    }),
+    providePrimeNG({ ripple: true, theme: { preset: primengPreset } }),
     provideHttpClient(withInterceptorsFromDi()),
   ],
 }).catch((err: unknown) => console.error(err));
